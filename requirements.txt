@@ -1,0 +1,134 @@
+# MATLAB Requirements for Red River Basin Dam Management
+
+## MATLAB Version
+- **Minimum**: R2020a
+- **Recommended**: R2021a or later
+- **Tested on**: R2020a, R2021b, R2022a
+
+## Required Toolboxes
+
+### Essential (Project Won't Run Without These)
+- **Optimization Toolbox** - For NSGA-II and optimization algorithms
+- **Deep Learning Toolbox** (formerly Neural Network Toolbox) - For ANN forecast model
+- **Statistics and Machine Learning Toolbox** - For statistical analysis and cross-validation
+
+### Recommended (For Full Functionality)
+- **Parallel Computing Toolbox** - For faster optimization (optional but recommended)
+- **Curve Fitting Toolbox** - For data preprocessing and analysis
+
+## Verification
+
+To verify your MATLAB installation has the required toolboxes, run:
+
+```matlab
+% Check MATLAB version
+version
+
+% List installed toolboxes
+ver
+
+% Check specific toolboxes
+license('test','Optimization_Toolbox')
+license('test','Neural_Network_Toolbox')
+license('test','Statistics_Toolbox')
+```
+
+## Alternative Solutions
+
+If you don't have access to all toolboxes:
+
+### For Neural Networks
+- Consider using open-source alternatives (but code modification required):
+  - Python with TensorFlow/PyTorch (requires code translation)
+  - Octave with neural network packages (limited compatibility)
+
+### For Optimization
+- Basic genetic algorithm can be implemented from scratch (provided in NSGA2 folder)
+- Consider using optimization-free approaches for initial exploration
+
+## External Dependencies
+
+### Data Files (Not Included - User Must Provide)
+The project requires historical data files in the following directories:
+- `data/` - Streamflow and precipitation time series
+- `sim/` - Simulation model functions
+- `STD/` - Standard Operating Policy functions
+- `RBF/` - Radial Basis Function utilities
+- `NSGA2/` - NSGA-II algorithm implementation
+- `divisione/` - Additional utility functions
+
+### Expected Data Format
+- Time series should be in MATLAB-compatible formats (.mat, .txt, .csv)
+- Daily time step
+- Variables should include:
+  - Hoa Binh inflow (m³/s)
+  - Thao River flow (m³/s)
+  - Lo River flow (m³/s)
+  - Precipitation at various stations (mm)
+  - Reservoir level (m)
+
+## Installation Checklist
+
+- [ ] MATLAB R2020a or later installed
+- [ ] Optimization Toolbox available
+- [ ] Deep Learning Toolbox available
+- [ ] Statistics and Machine Learning Toolbox available
+- [ ] Repository cloned
+- [ ] All subfolders added to MATLAB path
+- [ ] Data files placed in appropriate directories
+- [ ] Test script runs without errors
+
+## System Requirements
+
+### Minimum Hardware
+- **Processor**: Intel Core i5 or equivalent
+- **RAM**: 8 GB
+- **Storage**: 2 GB free space
+- **OS**: Windows 10, macOS 10.14+, or Linux
+
+### Recommended Hardware
+- **Processor**: Intel Core i7 or better
+- **RAM**: 16 GB or more (for faster optimization)
+- **Storage**: 5 GB free space (including results)
+- **OS**: Latest Windows 10/11, macOS, or Ubuntu
+
+## Performance Notes
+
+- **Forecast Model Training**: 5-30 minutes depending on hardware
+- **NSGA-II Optimization**: 20-60 minutes (70 pop, 50 gen)
+- **Full Script Execution**: 1-2 hours for complete analysis
+- **Parallel Computing**: Can reduce optimization time by 50-70%
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue**: "Undefined function or variable"
+- **Solution**: Ensure all subfolders are added to path
+- Run: `addpath(genpath('path/to/project'))`
+
+**Issue**: "Out of memory"
+- **Solution**: 
+  - Close other applications
+  - Reduce population size or generations in NSGA-II
+  - Use `clear` command between script sections
+
+**Issue**: "License checkout failed"
+- **Solution**: Verify toolbox license with `ver` command
+- Contact your MATLAB administrator
+
+**Issue**: Neural network training very slow
+- **Solution**:
+  - Reduce number of neurons or training iterations
+  - Enable GPU acceleration if available
+  - Reduce dataset size for initial testing
+
+## Updates and Compatibility
+
+This project is tested with MATLAB releases up to R2023b. Future MATLAB versions should maintain backward compatibility, but please report any issues.
+
+For the latest compatibility information, check the repository issues page.
+
+---
+
+Last Updated: November 2024
